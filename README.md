@@ -43,9 +43,10 @@ todoist/
 ## 🚀 Setup
 ### ***Prerequisites***
 * Docker Desktop
-* Node.js v18.x
-* npm v9.x
 * Git
+* Node.js v18.x (For Development and Testing only)
+* npm v9.x (For Development and Testing only)
+
 
 ### ***Installation***
 #### Clone repository
