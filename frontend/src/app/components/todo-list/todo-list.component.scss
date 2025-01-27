@@ -1,0 +1,54 @@
+.todo-list {
+  margin: 20px 0; // Margin around the todo list container
+  padding: 20px; // Padding inside the todo list container
+  background: white; // White background color
+  border-radius: 8px; // Rounded corners
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+}
+
+.add-todo {
+  display: flex; // Flexbox layout for the add todo form
+  gap: 10px; // Gap between input and button
+  margin-bottom: 20px; // Margin below the add todo form
+}
+
+.add-todo-input {
+  flex: 1; // Flex-grow to fill available space
+  padding: 10px; // Padding inside the input
+  border: 1px solid #ddd; // Light grey border
+  border-radius: 4px; // Rounded corners
+  font-size: 1rem; // Font size
+}
+
+.add-btn {
+  padding: 10px 20px; // Padding inside the button
+  background-color: #0066cc; // Blue background color
+  color: white; // White text color
+  border: none; // No border
+  border-radius: 4px; // Rounded corners
+  cursor: pointer; // Pointer cursor on hover
+  font-size: 1rem; // Font size
+}
+
+.add-btn:hover {
+  background-color: #0052a3; // Darker blue background color on hover
+}
+
+.loading {
+  text-align: center; // Center align text
+  color: #666; // Grey text color
+  padding: 20px; // Padding inside the loading message
+}
+
+.empty-state {
+  text-align: center; // Center align text
+  color: #666; // Grey text color
+  padding: 20px; // Padding inside the empty state message
+  border: 2px dashed #ddd; // Dashed border
+  border-radius: 4px; // Rounded corners
+  margin-top: 20px; // Margin above the empty state message
+}
+
+.todos {
+  margin-top: 20px; // Margin above the todo list
+}

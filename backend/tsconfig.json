@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    // Specifies the target JavaScript version that TypeScript will compile to.
+    // In this case, the compiled code will be compatible with ES2018 features.
+    "target": "es2018",
+    // Specifies the module system to use. "commonjs" is the standard used by Node.js.
+    "module": "commonjs",
+    // Defines the libraries to be included during compilation.
+    // "es2018" includes ECMAScript 2018 features, and "esnext.asynciterable" adds support for asynchronous iterables.
+    "lib": [
+      "es2018",
+      "esnext.asynciterable"
+    ],
+    // Specifies the directory where the compiled JavaScript files will be placed.
+    // In this case, the compiled files will be placed in the "dist" directory.
+    "outDir": "./dist",
+    // Specifies the root directory of the TypeScript source files.
+    // All the TypeScript files will be taken from this "src" folder and compiled into JavaScript in "dist".
+    "rootDir": "./src",
+    // Enables strict type-checking options to catch potential errors early.
+    // This ensures better type safety across the project.
+    "strict": true,
+    // Ensures that class properties are initialized in the constructor.
+    // Helps to avoid runtime errors due to uninitialized properties.
+    "strictPropertyInitialization": true,
+    // Defines how TypeScript should resolve modules. Using "node" mimics Node.js-style resolution for imports.
+    "moduleResolution": "node",
+    // Allows TypeScript to interoperate with modules that use CommonJS, even if they don't use the ES6 "default" export syntax.
+    "esModuleInterop": true,
+    // Enables support for experimental decorators used by some libraries (e.g., TypeORM).
+    "experimentalDecorators": true,
+    // Emits metadata needed for certain libraries (e.g., TypeORM or NestJS) to function properly.
+    "emitDecoratorMetadata": true,
+    // Skips type checking for declaration files (.d.ts) to speed up the compilation process.
+    // This is generally safe unless you're working with custom declaration files.
+    "skipLibCheck": true,
+    // Ensures consistent casing in file names across the project to avoid issues with case-sensitive file systems.
+    "forceConsistentCasingInFileNames": true
+  },
+  // Defines the files to include in the compilation.
+  // In this case, all files inside the "src" directory and its subdirectories will be compiled.
+  "include": [
+    "src/**/*"
+  ],
+  // Excludes specific directories from compilation.
+  // "node_modules" contains third-party libraries, and "dist" contains the compiled files, so neither should be compiled.
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

@@ -1,0 +1,32 @@
+<!-- Main container for the todo list application -->
+<div class="todo-list">
+  <!-- Page title -->
+  <h2>My Tasks</h2>
+
+  <!-- Add Todo Form - Input field and submit button -->
+  <div class="add-todo">
+    <input type="text" [(ngModel)]="newTodoTitle" placeholder="Add a new task..." (keyup.enter)="addTodo()"
+      class="add-todo-input">
+    <button (click)="addTodo()" class="add-btn">Add Task</button>
+  </div>
+
+  <!-- Todo List Container - Displays todos, loading state, or empty state -->
+  <div class="todos">
+    <!-- Loading State - Shows when fetching todos -->
+    @if (loading$ | async) {
+    <p class="loading">Loading tasks...</p>
+    } @else {
+    <!-- Todo Items List - Shows when todos exist -->
+    @if ((todos$ | async)?.length) {
+    @for (todo of todos$ | async; track todo.id) {
+    <!-- Individual Todo Item Component -->
+    <app-todo-item [todo]="todo" [isEditing]="editingId === todo.id" (edit)="updateTodo($event)"
+      (todoDeleted)="removeTodo(todo.id!)" (toggleComplete)="updateTodo($event)" (cancelEditMode)="editingId = null" />
+    }
+    } @else {
+    <!-- Empty State - Shows when no todos exist -->
+    <p class="empty-state">No tasks yet. Add your first task above!</p>
+    }
+    }
+  </div>
+</div>

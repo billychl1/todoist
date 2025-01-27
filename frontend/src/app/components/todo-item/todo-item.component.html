@@ -1,0 +1,42 @@
+<!-- Regular View -->
+<div *ngIf="!isEditing" class="todo-item">
+  <div class="todo-content">
+    <!-- Display the title of the todo item. Apply 'completed' class if the todo is completed. -->
+    <span [class.completed]="todo.completed">{{todo.title}}</span>
+    <div class="status-section">
+      <!-- Slide toggle to mark the todo as completed or not. -->
+      <mat-slide-toggle [checked]="todo.completed" (change)="onToggleComplete()" color="primary">
+      </mat-slide-toggle>
+    </div>
+  </div>
+  <div class="actions">
+    <!-- Edit button, disabled if the todo is completed. -->
+    <button class="edit-btn" [disabled]="todo.completed" (click)="startEdit()">Edit</button>
+  </div>
+</div>
+
+<!-- Edit Mode Overlay -->
+<div *ngIf="isEditing" class="edit-overlay">
+  <!-- Edit Form Popup -->
+  <div class="todo-edit">
+    <h3>Edit Todo</h3>
+    <div class="form-group">
+      <label>Title:</label>
+      <!-- Input field for editing the title of the todo item. -->
+      <input type="text" [(ngModel)]="editedTodo.title" placeholder="Enter title">
+    </div>
+    <div class="form-group">
+      <label>Description:</label>
+      <!-- Textarea for editing the description of the todo item. -->
+      <textarea [(ngModel)]="editedTodo.description" placeholder="Enter description" rows="3"></textarea>
+    </div>
+    <div class="edit-actions">
+      <!-- Save button to save the changes made to the todo item. -->
+      <button class="save-btn" (click)="saveEdit()">Save</button>
+      <!-- Cancel button to discard the changes and exit edit mode. -->
+      <button class="cancel-btn" (click)="cancelEdit()">Cancel</button>
+      <!-- Delete button to delete the todo item. -->
+      <button class="delete-btn" (click)="onDelete()">Delete</button>
+    </div>
+  </div>
+</div>

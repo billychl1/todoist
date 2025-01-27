@@ -1,0 +1,50 @@
+# Docker Compose configuration for Todo Application
+services:
+  # PostgreSQL Database Service
+  postgres:
+    image: postgres:latest # Use latest PostgreSQL image
+    environment:
+      # Database environment variables
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: todoist
+    volumes:
+      # Persist data using named volume
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      # Port mapping for database access
+      - "5432:5432" # Host:Container
+    healthcheck:
+      # Ensure database is ready
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d todoist" ]
+      interval: 5s # Check every 5 seconds
+      timeout: 5s # Timeout after 5 seconds
+      retries: 5 # Retry 5 times
+
+  # Backend API Service
+  backend:
+    build: ./backend # Build from backend Dockerfile
+    environment:
+      # Backend environment variables
+      DB_HOST: postgres # Database host name
+    ports:
+      # Port mapping for API access
+      - "3000:3000" # Host:Container
+    depends_on:
+      # Wait for database to be healthy
+      postgres:
+        condition: service_healthy
+
+  # Frontend Web Application Service
+  frontend:
+    build: ./frontend # Build from frontend Dockerfile
+    ports:
+      # Port mapping for web access
+      - "4200:4200" # Host:Container
+    depends_on:
+      # Wait for backend to start
+      - backend
+
+# Named volumes for data persistence
+volumes:
+  postgres_data: # Volume for PostgreSQL data
